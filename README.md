@@ -10,7 +10,7 @@
 > * 其他待补充...
 
 ------
-##前端接入：
+## 前端接入：
 #### 创建连接：
 1、引入静态资源md5.js,xin_node.min.js, 附件可下载
 ```javascript
@@ -27,8 +27,8 @@ var socket_server_url = "http://127.0.0.1:4000?userid=1305&username=spring&sourc
       c、source及相应的sign_key可发邮件申请
       d、可监听多个room_id，可用逗号隔开room_id,如："room001,room002,room003"
 
-####3、创建会话：XIN_NODE.init(socket_server_url, node_callback_config); 
-#####注：
+#### 3、创建会话：XIN_NODE.init(socket_server_url, node_callback_config); 
+##### 注：
 ```js
      socket_server_url 为拼接好的node服务连接地址 [必须]
      node_callback_config = {
@@ -39,8 +39,8 @@ var socket_server_url = "http://127.0.0.1:4000?userid=1305&username=spring&sourc
                   'reconnect_attempt_failed_callback': function(){} //超过失败重连最大次数回调 [非必须]
            } [必须]
 ```
-####4、接收消息：
-#####1.设置receive_message_callback回调函数进行回调，如:
+#### 4、接收消息：
+##### 1.设置receive_message_callback回调函数进行回调，如:
 ```js
          var node_callback_config = {
                  'receive_message_callback': function(message){
@@ -51,17 +51,17 @@ var socket_server_url = "http://127.0.0.1:4000?userid=1305&username=spring&sourc
 ```
     注：接收的消息message为json对象数据，如：{"source":"xxx_system","data":{"factory_count":47,"cover_city_count":14},"room_id":"10000020"}
 
-####5、推送消息：
-#####1、XIN_NODE.send_msg(data,room_ids)
+#### 5、推送消息：
+##### 1、XIN_NODE.send_msg(data,room_ids)
 注：数据格式：data建议为json对象，也可以是普通的数据格式; 消息可以发送到单个或多个房间，如多个room_id，可用逗号隔开, 如："room001,room002,room003"
 
-####6、异常处理：
-#####1、设置sys_error_callback, reconnect_attempt_failed_callback异常情况回调函数处理
+#### 6、异常处理：
+##### 1、设置sys_error_callback, reconnect_attempt_failed_callback异常情况回调函数处理
 
 ------
-##后端接入：
-####推送消息：
-#####1、http方式
+## 后端接入：
+#### 推送消息：
+##### 1、http方式
 接口地址：http://127.0.0.1:4000/api/notify
 请求方式：POST
 请求参数：
@@ -149,7 +149,7 @@ console.log(body);
 });
 ```
 ------
-##前端远程调试
+## 前端远程调试
 引入node_im_remote_debug.js文件
 demo:
 前端界面接入：
