@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+  <head>
+    <title>node im chat demo</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font: 13px Helvetica, Arial; }
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages li { padding: 5px 10px; }
+      #messages li:nth-child(odd) { background: #eee; }
+    </style>
+  </head>
+  <body>
+    <ul id="messages"></ul>
+    <script src="js/md5.js"></script>
+    <script src="js/node_im.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/2.2.3/jquery.min.js"></script>
+    <script>
+      var userid = 1305;
+      var username = "spring";
+      var room_ids = "monitor_room";
+      var source = "demo";
+      var sign_key = "try4dfs%#fs!#$2334ds(%B)";
+      var sign = md5(source + room_ids + sign_key);
+      var socket_server_url = "http://127.0.0.1:4000?userid="+userid+"&username="+username+"&source="+source+"&room_ids="+room_ids+"&sign="+sign+"&ext_info=";
+      var node_callback_config = {
+          'connected_callback': function(socket){
+              $('#messages').append($('<li>').text("websocket service connected!"));
+              var w = document.documentElement.clientWidth || document.body.clientWidth;
+              var h = document.documentElement.clientHeight || document.body.clientHeight;
+              data = {width:w,height:h};
+              NODE_IM.send_msg(data,room_ids);
+          },
+          'receive_message_callback': function(message){
+              //$('#messages').append($('<li>').text(message.data.username + ":" + message.data.msg));
+              $('#messages').append($('<li>').text(JSON.stringify(message)));
+          }
+      };
+      NODE_IM.init(socket_server_url, node_callback_config); 
+
+      $(window).resize(function(){
+          var w = document.documentElement.clientWidth || document.body.clientWidth;
+          var h = document.documentElement.clientHeight || document.body.clientHeight;
+          data = {width:w,height:h};
+          NODE_IM.send_msg(data,room_ids);
+      });
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+
+<!doctype html>
+<html>
+  <head>
+    <title>node im remote debug demo</title>
+  </head>
+  <body>
+    <script src="js/node_im_remote_debug.js"></script>
+    <script>
+  		setInterval(function(){
+          var w = document.documentElement.clientWidth || document.body.clientWidth;
+          var h = document.documentElement.clientHeight || document.body.clientHeight;
+          data = {width:w,height:h};
+          console.log(data);
+      },2000);
+    </script>
+  </body>
+</html>

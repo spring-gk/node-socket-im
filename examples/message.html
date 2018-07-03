@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+  <head>
+    <title>node im message demo</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font: 13px Helvetica, Arial; }
+      .messages { list-style-type: none; margin: 0; padding: 0; width: 43%; height: 300px; overflow-y: scroll; display: block; float: left; margin-bottom: 30px; margin-right: 30px; }
+      .messages li { padding: 5px 10px; }
+      .messages li:nth-child(odd) { background: #eee; }
+    </style>
+  </head>
+  <body>
+    <ul class="messages" id="messages_room1"></ul>
+    <ul class="messages" id="messages_room2"></ul>
+    <ul class="messages" id="messages_room3"></ul>
+    <ul class="messages" id="messages_room4"></ul>
+    <button id="test">测试http调用后端消息发送</button>
+    <script src="js/md5.js"></script>
+    <script src="js/node_im.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/2.2.3/jquery.min.js"></script>
+    <script>
+      var userid = 1305;
+      var username = "spring";
+      var room_ids = "room1,room2,room3,room4";
+      var source = "demo";
+      var sign_key = "try4dfs%#fs!#$2334ds(%B)";
+      var sign = md5(source + room_ids + sign_key);
+      var socket_server_url = "http://127.0.0.1:4000?userid="+userid+"&username="+username+"&source="+source+"&room_ids="+room_ids+"&sign="+sign+"&ext_info=";
+      var node_callback_config = {
+          'connected_callback': function(socket){
+              $('.messages').append($('<li>').text("websocket service connected!"));
+          },
+          'receive_message_callback': function(message){
+              room_id = message.room_id;
+              $('#messages_'+room_id).append($('<li>').text(JSON.stringify(message)));
+          }
+      };
+      NODE_IM.init(socket_server_url, node_callback_config); 
+
+      $("#test").click(function(){
+          var source = "demo";
+          var sign_key = "try4dfs%#fs!#$2334ds(%B)";
+          var room_ids = "room1,room2,room3,room4";
+          var api_url = "http://node.test.xin.com:4000/api/notify";
+          var send_data = "test";
+          var send_sign = md5(source + room_ids + send_data + sign_key);
+          //推送的消息
+          var message = {
+             "source":source,
+             "data":send_data,
+             "sign":send_sign,
+             "room_id":room_ids
+          };
+          $.post(api_url,message,function(res){
+            console.log(res);
+          },"json");
+      });
+
+    </script>
+  </body>
+</html>

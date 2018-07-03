@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+  <head>
+    <title>node im chat demo</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font: 13px Helvetica, Arial; }
+      form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
+      form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
+      form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages li { padding: 5px 10px; }
+      #messages li:nth-child(odd) { background: #eee; }
+    </style>
+  </head>
+  <body>
+    <div><input type="text" name="username" id="username"> <button id="join">加入</button></div>
+    <ul id="messages"></ul>
+    <form action="" id="message_form">
+      <input id="message" autocomplete="off" /><button>Send</button>
+    </form>
+    <script src="js/md5.js"></script>
+    <script src="js/node_im.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/2.2.3/jquery.min.js"></script>
+    <script>
+      var userid = 1305;
+      var username = "spring";
+      var room_ids = "chat_room";
+      var source = "demo";
+      var sign_key = "try4dfs%#fs!#$2334ds(%B)";
+      var sign = md5(source + room_ids + sign_key);
+      var socket_server_url = "http://127.0.0.1:4000?userid="+1305+"&username="+username+"&source="+source+"&room_ids="+room_ids+"&sign="+sign+"&ext_info=";
+      var node_callback_config = {
+          'connected_callback': function(socket){
+              $('#messages').append($('<li>').text("websocket service connected!"));
+          },
+          'receive_message_callback': function(message){
+              //$('#messages').append($('<li>').text(message.data.username + ":" + message.data.msg));
+              $('#messages').append($('<li>').text(JSON.stringify(message)));
+          }
+      };
+      NODE_IM.init(socket_server_url, node_callback_config); 
+
+      $("#join").click(function(){
+          username = $("#username").val();
+          if(username == ""){
+            alert("用户名不能为空！");
+            return false;
+          }
+          data = {
+            'username': "system",
+            'msg': username + "加入群聊"
+          };
+          NODE_IM.send_msg(data,room_ids);
+          $(this).parent().hide();
+      });
+      $("#message_form").submit(function(){
+          msg = $("#message").val();
+          data = {
+            username: username,
+            msg: msg
+          };
+          NODE_IM.send_msg(data,room_ids);
+          return false;
+      });   
+
+    </script>
+  </body>
+</html>

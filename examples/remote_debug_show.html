@@ -1,0 +1,28 @@
+
+<!doctype html>
+<html>
+  <head>
+    <title>node im remote debug demo</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font: 13px Helvetica, Arial; }
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages li { padding: 5px 10px; }
+      #messages li:nth-child(odd) { background: #eee; }
+    </style>
+  </head>
+  <body>
+    <ul id="messages"></ul>
+    <script src="js/node_im.min.js"></script>
+    <script src="https://cdn.bootcss.com/jquery/2.2.3/jquery.min.js"></script>
+    <script>
+      var socket_server_url = "http://127.0.0.1:4000?userid=0000&username=demo&source=remote_debug&room_ids=console-log&sign=5b092ffd2f7bcd3eddc9a7655600a998&ext_info=";
+      var node_callback_config = {
+          'receive_message_callback': function(message){
+              $('#messages').append($('<li>').text(JSON.stringify(message)));
+          }
+      };
+      XIN_NODE.init(socket_server_url, node_callback_config); 
+    </script>
+  </body>
+</html>
