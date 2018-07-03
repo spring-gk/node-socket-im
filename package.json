@@ -1,0 +1,23 @@
+{
+    "name": "node-socket-im",
+    "description": "realtime chat web application",
+    "version": "0.0.2",
+    "main": "server.js",
+    "scripts": {
+        "production": "set NODE_ENV=production&&node ./server.js",
+        "development": "set NODE_ENV=development&&node ./server.js",
+        "local": "set NODE_ENV=local&&node ./server.js"
+    },
+    "dependencies": {
+        "express": "^4.16.3",
+        "generic-pool": "^3.4.2",
+        "ioredis": "^3.2.2",
+        "md5": "^2.2.1",
+        "redis": "^2.8.0",
+        "socket.io": "^2.1.0"
+    },
+    "engines": {
+        "node": "0.10.x",
+        "npm": "1.2.x"
+    }
+}

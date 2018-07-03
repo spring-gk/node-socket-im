@@ -1,0 +1,18 @@
+
+<br>2018-07-03 16:31:40[192.168.89.126] redis_pool_client error
+<br>2018-07-03 16:31:40[192.168.89.126] redis_pool_client reconnecting:100
+<br>2018-07-03 16:31:40[192.168.89.126] redis_pool_client error
+<br>2018-07-03 16:31:40[192.168.89.126] redis_pool_client error
+<br>2018-07-03 16:31:40[192.168.89.126] redis_subscribe_client error
+<br>2018-07-03 16:31:40[192.168.89.126] Redis Error Error: connect ECONNREFUSED 127.0.0.1:6379
+<br>2018-07-03 16:31:40[192.168.89.126] redis_pool_client error
+<br>2018-07-03 16:31:40[192.168.89.126] redis_pool_client reconnecting:100
+<br>2018-07-03 16:31:40[192.168.89.126] redis_pool_client reconnecting:100
+<br>2018-07-03 16:31:40[192.168.89.126] redis_subscribe_client reconnecting
+<br>2018-07-03 16:31:40[192.168.89.126] redis_pool_client reconnecting:100
+<br>2018-07-03 16:32:23[192.168.89.126] redis_pool_client connected
+<br>2018-07-03 16:32:23[192.168.89.126] redis_pool_client connected
+<br>2018-07-03 16:32:23[192.168.89.126] redis_subscribe_client connected
+<br>2018-07-03 16:32:23[192.168.89.126] redis_pool_client connected
+<br>2018-07-03 16:32:23[192.168.89.126] redis_pool_client connected
+<br>2018-07-03 16:32:23[192.168.89.126] subscribe successed!

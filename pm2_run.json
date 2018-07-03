@@ -1,0 +1,19 @@
+{
+  "apps" : [{
+    "name"        : "xin_node",
+    "script"      : "./server.js",
+    "watch"       : true,
+    "env_development": {
+      "NODE_ENV": "development"
+    },
+    "env_production" : {
+       "NODE_ENV": "production"
+    },
+    "env_local" : {
+       "NODE_ENV": "local"
+    },
+    "log_date_format": "YYYY-MM-DD HH:mm:ss",
+    /*"error_file": "./pm2_error.log",
+    "out_file": "./pm2_out_file.log"*/
+  }]
+}
