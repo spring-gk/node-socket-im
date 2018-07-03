@@ -1,5 +1,5 @@
 # node-socket-im
-### Node+Express+Socket.IO 服务端多实例消息共享及时通信项目
+### Node+Express+Socket.IO+ioredis 服务端多实例消息共享及时通信项目
 ------
 应用：
 
