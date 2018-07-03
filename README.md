@@ -65,13 +65,14 @@ var socket_server_url = "http://127.0.0.1:4000?userid=1305&username=spring&sourc
 接口地址：http://127.0.0.1:4000/api/notify
 请求方式：POST
 请求参数：
-| 字段名称       | 数据类型   |  必要  | 注释  |
-| --------   | -----: | -----:  | :----:  |
-| source  | string  | 是 | 消息来源 |
-|data  |string  |是 |发送的消息，如{"factory_count":47,"cover_city_count":12}|
-|sign  |string  |是 |签名生成方式： sign = md5(source + room_id + data + sign_key)|
-|room_id |string  |是 |房间号，多个可用逗号隔开,如："room001,room002,room003"|
-|filename  |string  |否 |保存的日志文件名称，如test.log|
+
+ 字段名称  | 数据类型   |  必要  | 注释  <br>
+source  string  是 消息来源<br>
+data  string  是 发送的消息，如{"factory_count":47,"cover_city_count":12}<br>
+sign  string  是 签名生成方式： sign = md5(source + room_id + data + sign_key)<br>
+room_id string  是 房间号，多个可用逗号隔开,如："room001,room002,room003"<br>
+filename  string  否 保存的日志文件名称，如test.log<br>
+
 
 接口返回：json格式，code为1表示消息发送成功，其他为失败{"code":1,"msg":"message notify successed!","data":""}
 
