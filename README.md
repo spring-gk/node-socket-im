@@ -163,7 +163,7 @@ console.log(body);
 ------
 ## 前端远程调试
 引入node_im_remote_debug.js文件
-demo:
+DEMO:
 前端界面接入：
 ```js
 <script src="js/node_im_remote_debug.js"></script>
